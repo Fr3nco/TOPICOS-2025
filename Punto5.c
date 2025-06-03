@@ -69,11 +69,12 @@ char *mi_strcpy(char *cad1, const char *cad2)
 
 void generarClasificador(tRegistro *reg)
 {
-    if(mi_strcmp(reg->nivel_general_aperturas,"Nivel general")==0)
+    if(mi_strcmp(reg->nivel_general_aperturas, "Nivel general") == 0)
     {
-        mi_strcpy (reg->Clasificador,"Nivel general");
+        mi_strcpy(reg->Clasificador, "Nivel general");
     }
-
-    mi_strcpy (reg->Clasificador,"Capítulos");
-
+    else
+    {
+        mi_strcpy(reg->Clasificador, "Capítulos");
+    }
 }
