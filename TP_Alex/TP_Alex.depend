@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1748983794 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\tp_alex\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
