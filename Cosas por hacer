@@ -1,0 +1,36 @@
+falta:
+-agregarle la funcion 2 a la 1
+-pasar a algebra de punteros como hizo el profe con srtchr:
+
+while (fgets(linea, TAM_REGISTRO, fpIn)) {
+        VarCosto* empl = &reg;
+        
+        VarCosto* empl = reg; 
+
+    char* act = strchr(linea, '\n'); //devuelve el final de la cadena 
+
+    if(!act)
+    {
+        return 2; 
+    }
+
+    *act = '\0';  
+    act = strrchr(linea, ';'); //busca el ultimo separador ';'
+    sscanf(act + 1, "%f", &empl->indice); //guarda el valor de indice en variable de tipo estructura
+
+    *act = '\0';
+    act = strrchr(linea, ';'); 
+
+    sscanf(linea, "%s", empl->nombre); 
+ 
+    *act = '\0';  
+    sscanf(act + 1, "%d/%d/%d", &empl->Fingr.d, &empl->Fingr.m, &empl->Fingr.a);
+
+
+       // sscanf(linea, "\"%d/%d/%d\"", &empl->Fingr.d, &empl->Fingr.m, &empl->Fingr.a);
+
+    
+               fprintf(fpOut, "\"%04d/%02d/%02d\";\"%s\";%.3f\n",empl->Fingr.a, empl->Fingr.m, empl->Fingr.d,empl->nombre, empl->indice);
+
+
+ver bien casi copiado del programa del profe
