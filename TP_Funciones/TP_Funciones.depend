@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1746706619 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\fecha\fecha.c
+	"fecha.h"
+
+1746706619 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1744218581 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1744216303 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
