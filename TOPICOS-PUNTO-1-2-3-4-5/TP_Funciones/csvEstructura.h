@@ -11,7 +11,8 @@
 #define ERROR_VEC 3
 #define BIEN 0
 #define ERR_FORMATO_LINEA 4
-#define NOM_ARCH_ORIG "indices_icc_general_capitulos.csv"
+#define NOM_ARCH_GENERAL "indices_icc_general_capitulos.csv"
+#define NOM_ARCH_ITEMS "indices_items_obra.csv"
 #define NOM_ARCH_MOD "indices_icc_general_capitulos_modificado.csv"
 
 typedef struct {
@@ -21,7 +22,7 @@ typedef struct {
     char clasificador[14];
 } RegistroICC;
 
-// Funciones genéricas
+// Funciones genï¿½ricas
 typedef int (*FuncionParseo)(char* linea, void* estructura);
 typedef void (*FuncionClasificador)(void* estructura);
 

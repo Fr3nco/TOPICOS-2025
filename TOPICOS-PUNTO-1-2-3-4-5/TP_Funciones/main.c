@@ -15,13 +15,25 @@ void generarClasificadorIndiceGeneral(void* reg);
 void desencriptarIndiceGeneral(char* cadena);
 void formatearFecha(const Fecha *f, char *fechaStr);
 Fecha parsearFecha(const char *fechaStr);
+char mi_toupper(char c);
+bool  normalizarNivelGeneralAperturasItems( char * str);
+char *mi_strchr(char *s, int c);
+void ClasificadorItems(void * reg);
+int parsearLineaItems(char* linea, void* reg);
+
+
+
 
 int main()
 {
+
+    system("chcp 1252 >nul");
+    Vector vItems;
     Vector vRegistros;
 
+
     int res = cargarDesdeCSV(
-                  NOM_ARCH_ORIG,
+                  NOM_ARCH_GENERAL,
                   &vRegistros,
                   sizeof(RegistroICC),
                   parsearLineaRegistroICC
@@ -34,7 +46,7 @@ int main()
         {
             puts("Error al agregar clasificadores");
             vectorDestruir(&vRegistros);
-            return res;
+
         }
 
         printf("Registros cargados: %d\n", vRegistros.ce);
@@ -42,12 +54,38 @@ int main()
     }
     else
     {
-        printf("Error al cargar archivo. Código: %d\n", res);
+        printf("\n Error al hacer la carga en el archivo : %s",NOM_ARCH_GENERAL);
     }
 
     vectorDestruir(&vRegistros);
+
+    puts("Archivo 2\n");
+    puts("-------------------------------------------------------------------------------\n");
+
+    int res2=cargarDesdeCSV(NOM_ARCH_ITEMS,&vItems, sizeof(RegistroICC),parsearLineaItems);
+     if (res2 == BIEN)
+    {
+        res2 = agregarClasificador(&vItems, ClasificadorItems);
+        if(res2 != BIEN)
+        {
+            puts("Error al agregar clasificadores");
+            vectorDestruir(&vItems);
+
+        }
+
+        printf("Registros cargados: %d\n", vItems.ce);
+        vectorMostrarGen(&vItems, imprimirRegistroICC);
+    }
+    else
+    {
+        printf("\n Error al hacer la carga en el archivo : %s",NOM_ARCH_ITEMS);
+    }
+
+    vectorDestruir(&vItems);
+
     return 0;
 }
+
 
 int cargarDesdeCSV(const char* nomArch,Vector *vec,size_t tamRegistro,FuncionParseo parsearLinea)
 {
@@ -102,7 +140,7 @@ int parsearLineaRegistroICC(char* linea, void* reg)
 {
     RegistroICC* registro = (RegistroICC*) reg;
     char lineaAux[TAM_LINEA];
-    strcpy(lineaAux, linea);
+    mi_strcpy(lineaAux, linea);
 
     char* ptr;
 
@@ -163,19 +201,20 @@ void eliminarComillas(char* str)
     }
 }
 
-void reemplazarComaPorPunto(char* str)
-{
-    for (int i = 0; str[i]; i++)
-    {
-        if (str[i] == ',')
-            str[i] = '.';
+void reemplazarComaPorPunto(char* str) {
+    char* p = str;
+    while (*p) {
+        if (*p == ',') {
+            *p = '.';
+        }
+        p++;
     }
 }
 
 void imprimirRegistroICC(const void* elem)
 {
     const RegistroICC* r = (const RegistroICC*) elem;
-    printf("%11s | %31s | %.2lf | %14s\n", r->periodo, r->nivGenApertura, r->indice,r->clasificador);
+    printf("%11s | %31s | %8.2lf | %14s\n", r->periodo, r->nivGenApertura, r->indice,r->clasificador);
 }
 
 int mi_strcmp (const char *cad1,const char *cad2)
@@ -268,3 +307,94 @@ void desencriptarIndiceGeneral(char* cadena)
 
     secuenciaPalabrasCerrar(&secE);
 }
+/* SEGUNDO ARCHIVO*/
+
+//PUNTO 6
+int parsearLineaItems(char* linea, void* reg)
+{
+    RegistroICC* registro = (RegistroICC*) reg;
+    char lineaAux[TAM_LINEA];
+    mi_strcpy(lineaAux, linea);
+
+    char* ptr;
+
+    //  Periodo (DD/MM/AAAA)
+    ptr = strtok(lineaAux, ";");
+    if (ptr == NULL)
+        return ERR_FORMATO_LINEA;
+    eliminarComillas(ptr);
+    convertirFecha(ptr, registro->periodo);
+
+    //  Nivel General y Aperturas
+    ptr = strtok(NULL, ";");
+    if (ptr == NULL)
+        return ERR_FORMATO_LINEA;
+    eliminarComillas(ptr);
+    //normalizarNivelGeneralAperturasItems(ptr); iría luego de desencriptar
+
+    strncpy(registro->nivGenApertura, ptr, TAM_NIV_GEN_APERTURA - 1);
+    registro->nivGenApertura[TAM_NIV_GEN_APERTURA - 1] = '\0';
+
+    // Tercer: Indice
+    ptr = strtok(NULL, ";");
+    if (ptr == NULL)
+        return ERR_FORMATO_LINEA;
+    reemplazarComaPorPunto(ptr);
+    registro->indice = atof(ptr);
+
+    return BIEN;
+}
+
+
+//PUNTO 8
+char mi_toupper(char c)
+{
+    if (c >= 'a' && c <= 'z') {
+        return c - ('a' - 'A');
+    }
+    return c;
+}
+char *mi_strchr(char *str, int c)
+{
+    while (str != NULL && *str != '\0') {
+        if (*str == (char)c) {
+            return str;
+        }
+        str++;
+    }
+    return NULL;
+}
+
+bool  normalizarNivelGeneralAperturasItems( char *str)
+{
+    char *primerGuion= mi_strchr(str,'_');
+    if(primerGuion==NULL)
+        return false;
+    memmove(str,primerGuion+1, strlen(primerGuion));
+
+    *str=mi_toupper(*str);
+
+  char *p = str;
+    while (*p != '\0')
+    {
+        if (*p == '_')
+        {
+            *p = ' ';
+        }
+        p++;
+    }
+
+    return true;
+}
+
+/* Punto 9 */
+
+
+void ClasificadorItems(void *reg)
+{
+    RegistroICC *registro= (RegistroICC*)reg;
+    mi_strcpy(registro->clasificador,"ítems");
+}
+
+
+
