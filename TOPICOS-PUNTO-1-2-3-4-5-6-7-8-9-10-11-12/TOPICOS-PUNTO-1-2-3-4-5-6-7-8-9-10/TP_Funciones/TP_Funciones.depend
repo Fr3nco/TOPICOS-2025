@@ -1,0 +1,307 @@
+# depslib dependency file v1.0
+1746706619 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\fecha\fecha.c
+	"fecha.h"
+
+1746706619 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1744218581 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1744216303 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\proyecto_guia\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1749399483 source:c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\fecha\fecha.c
+	"fecha.h"
+
+1749399483 c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1749399483 source:c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1749399483 c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1749399768 source:c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\tp_funciones\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1749260147 c:\users\agust\onedrive\desktop\topicos-2025-alex\topicos-2025-alex\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1749424324 source:c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\fecha\fecha.c
+	"fecha.h"
+
+1749424324 c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1749424324 source:c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1749424324 c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1749424324 source:c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\tp_funciones\main.c
+	"csvEstructura.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1749424324 c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1749424324 c:\users\jere6\desktop\topicos1-5\topicos-2025\topicos-punto-1-2-3-4\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1749424324 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\fecha\fecha.c
+	"fecha.h"
+
+1749424324 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1749424324 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1749424324 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1749673991 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\tp_funciones\main.c
+	"csvEstructura.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1749671471 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1749424324 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1749674148 source:c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\fecha\fecha.c
+	"fecha.h"
+
+1749674148 c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1749674148 source:c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1749674148 c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1749836689 source:c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\tp_funciones\main.c
+	"csvEstructura.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1749835647 c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1749674148 c:\users\operador\desktop\topicos-2025-jere\topicos-punto-1-2-3-4-5\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1750018772 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\fecha\fecha.c
+	"fecha.h"
+
+1750018772 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1750104262 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1750098908 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1750104018 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\tp_funciones\main.c
+	"cabeceras.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750019616 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1750018772 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1750104001 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\tp_funciones\cabeceras.h
+	"csvEstructura.h"
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1750104394 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9\tp_funciones\funciones.c
+	"cabeceras.h"
+
+1750018772 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.c
+	"fecha.h"
+
+1750018772 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1750104262 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1750098908 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1750104394 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\funciones.c
+	"cabeceras.h"
+
+1750104001 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\cabeceras.h
+	"csvEstructura.h"
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1750019616 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1750018772 d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1750104018 source:d:\descargas\topicos-2025-franco\topicos-2025-franco\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\main.c
+	"cabeceras.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750115706 source:c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.c
+	"fecha.h"
+
+1750115706 c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1750115706 source:c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1750115706 c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1750115985 source:c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\funciones.c
+	"cabeceras.h"
+
+1750116058 c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\cabeceras.h
+	"csvEstructura.h"
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1750115976 c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1750115706 c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1750116198 source:c:\users\urano\desktop\pre-topicos 2025\topicos-2025-agustin\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\main.c
+	"cabeceras.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750185352 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.c
+	"fecha.h"
+
+1750185352 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1750185352 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1750185352 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1750253282 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\main.c
+	"cabeceras.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750252715 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\cabeceras.h
+	"csvEstructura.h"
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1750202637 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\csvestructura.h
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../nivGenApertura/nivGeneral.h"
+
+1750185352 c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\nivgenapertura\nivgeneral.h
+	<stdio.h>
+	<stdbool.h>
+
+1750257425 source:c:\users\jere6\desktop\topicos-2025\topicos-punto-1-2-3-4-5-6-7-8-9-10\topicos-punto-1-2-3-4-5-6-7-8-9-10\tp_funciones\funciones.c
+	"cabeceras.h"
+
