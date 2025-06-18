@@ -155,27 +155,26 @@ void desencriptarCadena(char* cadena)
 {
     while(*cadena)
     {
-        *cadena = desencriptarCaracter(*cadena); //en el contenido de cadena se guarda lo que devuelve la funcion
+        *cadena = desencriptarCaracter(*cadena);
         cadena++;
 
     }
 
 }
-char desencriptarCaracter(char caracter)
-{
-    int i;
+char desencriptarCaracter(char caracter) {
+    const Diccionario *ptr = diccionario;
+    const Diccionario *fin = ptr + CANTIDAD_DICCIONARIO;
 
-        for(i = 0 ; i < CANTIDAD_DICCIONARIO ; i++)
-        {
-            if(diccionario[i].Encriptado == caracter)
-            {
-                return diccionario[i].Desencriptado;
-            }
+    while (ptr < fin) {
+        if (ptr->Encriptado == caracter) {
+            return ptr->Desencriptado;
+        }
+        ptr++;
+    }
 
+    return caracter;
 }
 
-return caracter; // en caso de que no este encriptado el caracter devuelve el mismo
-}
 //PUNTO 8
 bool  normalizarNivelGeneralAperturasItems( char *str)
 {
