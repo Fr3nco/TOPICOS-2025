@@ -1,5 +1,8 @@
 #include "nivGeneral.h"
 
+bool esLetra(char c);
+
+
 void secuenciaPalabrasCrear(secuenciaPalabras* sec, char* cad)
 {
     sec->cursor = (char*)cad;

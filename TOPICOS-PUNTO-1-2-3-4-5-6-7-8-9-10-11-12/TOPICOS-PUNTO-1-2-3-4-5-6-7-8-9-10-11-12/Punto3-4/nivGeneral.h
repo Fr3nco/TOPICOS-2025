@@ -24,7 +24,9 @@ void secuenciaPalabrasEscribirCaracter(secuenciaPalabras* sec, char c);
 bool secuenciaPalabrasFin(secuenciaPalabras* sec);
 void secuenciaPalabrasCerrar(secuenciaPalabras* sec);
 
+
 void palabraATitulo(Palabra* pal);
-bool esLetra(char c);
+
+
 
 #endif // NIVGENERAL_H_INCLUDED

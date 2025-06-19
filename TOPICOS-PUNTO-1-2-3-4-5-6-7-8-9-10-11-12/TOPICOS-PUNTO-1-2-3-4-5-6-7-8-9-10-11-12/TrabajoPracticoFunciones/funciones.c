@@ -1,18 +1,48 @@
 #include "cabeceras.h"
-//Variable global
-const Diccionario diccionario[CANTIDAD_DICCIONARIO] =
-    {
-    {'@', 'a'}, {'8', 'b'}, {'3', 'e'}, {'1', 'i'}, {'0', 'o'},
-    {'$', 's'}, {'7', 't'}, {'|', 'l'}, {'5', 'm'}, {'9', 'n'}
-    };
 
 
 //PUNTO 1:
-void convertirFecha(char* fOrig, char* fConv)
-{
+bool esFechaValida(int dia, int mes, int anio) {
+    // Validar año
+    if(anio < 1900 || anio > 2100)
+    return false;
+
+    // Validar mes
+    if(mes < 1 || mes > 12)
+    return false;
+
+    // Validar día
+    if(dia < 1)
+    return false;
+
+    // Meses con 31 días
+    if(mes == 1 || mes == 3 || mes == 5 || mes == 7 ||
+       mes == 8 || mes == 10 || mes == 12) {
+        return dia <= 31;
+    }
+    // Meses con 30 días
+    else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        return dia <= 30;
+    }
+    // Febrero (considerando años bisiestos)
+    else {
+        if((anio % 400 == 0) || (anio % 100 != 0 && anio % 4 == 0)) {
+            return dia <= 29;
+        } else {
+            return dia <= 28;
+        }
+    }
+}
+int convertirFecha(char* fOrig, char* fConv) {
     int d, m, a;
     sscanf(fOrig, "%d/%d/%d", &d, &m, &a);
+
+    if(!esFechaValida(d, m, a)) {
+        return ERROR_FECHA;
+    }
+
     sprintf(fConv, "%04d-%02d-%02d", a, m, d);
+    return BIEN;
 }
 //PUNTO 2
 void reemplazarComaPorPunto(char* str) {
@@ -25,7 +55,6 @@ void reemplazarComaPorPunto(char* str) {
         p++;
     }
 }
-
 int parsearLineaRegistroGeneralICC(char* linea, void* reg) {
     RegistroICC* registro = (RegistroICC*) reg;
     char lineaAux[TAM_LINEA];
@@ -60,9 +89,8 @@ int parsearLineaRegistroGeneralICC(char* linea, void* reg) {
 
     return BIEN;
 }
-//PUNTO 3 y 4
-void desencriptarIndiceGeneral(char* cadena)
-{
+// PUNTO 3: Desencriptar índice general
+void desencriptarIndiceGeneral(char* cadena) {
     secuenciaPalabras secL, secE;
     Palabra pal;
 
@@ -71,17 +99,29 @@ void desencriptarIndiceGeneral(char* cadena)
     secuenciaPalabrasDesencriptar(&secL, &pal);
     palabraATitulo(&pal);
 
-    while(!secuenciaPalabrasFin(&secL))
-    {
+    while(!secuenciaPalabrasFin(&secL)) {
         secuenciaPalabrasEscribir(&secE, &pal);
-
-        if(secuenciaPalabrasDesencriptar(&secL, &pal))
-        {
+        if(secuenciaPalabrasDesencriptar(&secL, &pal)) {
             secuenciaPalabrasEscribirCaracter(&secE, ' ');
         }
     }
-
     secuenciaPalabrasCerrar(&secE);
+}
+
+// PUNTO 4: Normalizar nivel general aperturas
+bool normalizarNivelGeneralAperturas(char* str, bool esItem) {
+    if(esItem) {
+        char* primerGuion = mi_strchr(str, '_');
+        if(!primerGuion)
+            return false;
+        memmove(str, primerGuion+1, strlen(primerGuion));
+    }
+
+    *str = mi_toupper(*str);
+    for(char* p = str; *p; p++) {
+        if(*p == '_') *p = ' ';
+    }
+    return true;
 }
 //Punto 5
 
@@ -114,7 +154,7 @@ void generarClasificadorIndiceGeneral(void* reg)
 
 /* SEGUNDO ARCHIVO*/
 
-//PUNTO 6
+//PUNTO 6 parsear y desencriptar items
 int parsearLineaItemsObra(char* linea, void* reg) {
     RegistroICC* registro = (RegistroICC*) reg;
     char lineaAux[TAM_LINEA];
@@ -153,30 +193,50 @@ int parsearLineaItemsObra(char* linea, void* reg) {
 /*Punto 7*/
 void desencriptarCadena(char* cadena)
 {
-    while(*cadena)
+    char* ptr = cadena;
+
+    while (*ptr != '\0')
     {
-        *cadena = desencriptarCaracter(*cadena);
-        cadena++;
+        switch (*ptr)
+        {
+        case '@':
+            *ptr = 'a';
+            break;
+        case '8':
+            *ptr = 'b';
+            break;
+        case '3':
+            *ptr = 'e';
+            break;
+        case '1':
+            *ptr = 'i';
+            break;
+        case '0':
+            *ptr = 'o';
+            break;
+        case '$':
+            *ptr = 's';
+            break;
+        case '7':
+            *ptr = 't';
+            break;
+        case '|':
+            *ptr = 'l';
+            break;
+        case '5':
+            *ptr = 'm';
+            break;
+        case '9':
+            *ptr = 'n';
+            break;
 
-    }
-
-}
-char desencriptarCaracter(char caracter) {
-    const Diccionario *ptr = diccionario;
-    const Diccionario *fin = ptr + CANTIDAD_DICCIONARIO;
-
-    while (ptr < fin) {
-        if (ptr->Encriptado == caracter) {
-            return ptr->Desencriptado;
         }
         ptr++;
     }
-
-    return caracter;
 }
 
 //PUNTO 8
-bool  normalizarNivelGeneralAperturasItems( char *str)
+bool normalizarNivelGeneralAperturasItems( char *str)
 {
     char *primerGuion= mi_strchr(str,'_');
     if(primerGuion==NULL)
@@ -246,82 +306,60 @@ bool mismoMesAnioAnterior(const char *fechaActual, const char *fechaAnterior, ch
 
     return false;
 }
-bool calculoVariacionMensual(Vector *vec)
-{
+bool calculoVariacionMensual(Vector *vec) {
     if (vec == NULL || vec->ce == 0)
         return false;
 
-     for (size_t i = 0; i < vec->ce; i++)
-    {
+    for (size_t i = 0; i < vec->ce; i++) {
         RegistroICC *regActual = (RegistroICC*)((char*)vec->vec + i * vec->tamElem);
         int encontrado = 0;
 
-
-        for (size_t j = 0; j < vec->ce && !encontrado; j++)
-        {
+        for (size_t j = 0; j < vec->ce && !encontrado; j++) {
             RegistroICC *regAnterior = (RegistroICC*)((char*)vec->vec + j * vec->tamElem);
 
-
-            if (mismoMesAnioAnterior(regActual->periodo, regAnterior->periodo,"MENSUAL") &&
-                mi_strcmp(regActual->nivGenApertura, regAnterior->nivGenApertura) == 0)
-            {
-
-                if (regAnterior->indice != 0)
-                {
-                    regActual->var_mensual = ((regActual->indice/
-                                               regAnterior->indice)-1) * 100;
-                }
-                else
-                {
+            if (mismoMesAnioAnterior(regActual->periodo, regAnterior->periodo, "MENSUAL") &&
+                mi_strcmp(regActual->nivGenApertura, regAnterior->nivGenApertura) == 0) {
+                if (regAnterior->indice != 0) {
+                    double variacion = ((regActual->indice / regAnterior->indice) - 1) * 100;
+                    regActual->var_mensual = redondear2Decimales(variacion);
+                } else {
                     regActual->var_mensual = 0;
                 }
                 encontrado = 1;
             }
         }
 
-        if (!encontrado)
-        {
+        if (!encontrado) {
             regActual->var_mensual = 0;
         }
     }
     return true;
 }
-bool calculoVariacionInteranual(Vector *vec)
-{
+
+bool calculoVariacionInteranual(Vector *vec) {
     if (vec == NULL || vec->ce == 0)
         return false;
 
-
-    for (size_t i = 0; i < vec->ce; i++)
-    {
+    for (size_t i = 0; i < vec->ce; i++) {
         RegistroICC *regActual = (RegistroICC*)((char*)vec->vec + i * vec->tamElem);
         int encontrado = 0;
 
-
-        for (size_t j = 0; j < vec->ce && !encontrado; j++)
-        {
+        for (size_t j = 0; j < vec->ce && !encontrado; j++) {
             RegistroICC *regAnterior = (RegistroICC*)((char*)vec->vec + j * vec->tamElem);
 
-
-            if (mismoMesAnioAnterior(regActual->periodo, regAnterior->periodo,"INTERANUAL") &&
-                mi_strcmp(regActual->nivGenApertura, regAnterior->nivGenApertura) == 0)
-            {
-
-                if (regAnterior->indice != 0)
-                {
-                    regActual->var_interanual = ((regActual->indice/
-                                               regAnterior->indice)-1) * 100;
-                }
-                else
-                {
+            if (mismoMesAnioAnterior(regActual->periodo, regAnterior->periodo, "INTERANUAL") &&
+                mi_strcmp(regActual->nivGenApertura, regAnterior->nivGenApertura) == 0) {
+                if (regAnterior->indice != 0) {
+                    double variacion = ((regActual->indice / regAnterior->indice) - 1) * 100;
+                    regActual->var_interanual = redondear2Decimales(variacion);
+                } else {
                     regActual->var_interanual = 0;
                 }
                 encontrado = 1;
             }
         }
 
-        if (!encontrado)
-        {
+        if (!encontrado) {
             regActual->var_interanual = 0;
         }
     }
@@ -358,7 +396,7 @@ int cargarDesdeCSV(const char* nomArch,Vector *vec,size_t tamRegistro,FuncionPar
         {
             if(vectorInsertarAlFinal(vec,estructura))
             {
-                puts("Error al ingresos elemento al vector\n");
+                puts("Error al ingresar elemento al vector\n");
                 free(estructura);
                 fclose(arch);
                 vectorDestruir(vec);
@@ -374,8 +412,45 @@ int cargarDesdeCSV(const char* nomArch,Vector *vec,size_t tamRegistro,FuncionPar
 
     free(estructura);
     fclose(arch);
-    return TODO_OK;
+    return BIEN;
 }
+
+int grabarArchivoSalida(const Vector* vector, const char* nombreArch) {
+    FILE* arch = fopen(nombreArch, "wb");
+    if(!arch)
+    {
+        printf("Error al abrir el archivo binario de salida: %s\n", nombreArch);
+        return ERR_ARCHIVO;
+    }
+
+    RegistroSalida regSalida;
+
+    for(size_t i = 0; i < vector->ce; i++) {
+        RegistroICC* regICC = (RegistroICC*)((char*)vector->vec + i * vector->tamElem);
+
+        // Índice ICC
+        mi_strcpy(regSalida.periodo, regICC->periodo);
+        mi_strcpy(regSalida.clasificador, regICC->clasificador);
+        mi_strcpy(regSalida.nivel_general_aperturas, regICC->nivGenApertura);
+        mi_strcpy(regSalida.tipo_variable, "indice_icc");
+        regSalida.valor = regICC->indice;
+        fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
+
+        // Variación mensual
+        mi_strcpy(regSalida.tipo_variable, "var_mensual");
+        regSalida.valor = regICC->var_mensual;
+        fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
+
+        // Variación interanual
+        mi_strcpy(regSalida.tipo_variable, "var_interanual");
+        regSalida.valor = regICC->var_interanual;
+        fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
+    }
+
+    fclose(arch);
+    return BIEN;
+}
+
 //funciones auxiliares
 void eliminarComillas(char* str)
 {
@@ -449,7 +524,55 @@ char *mi_strchr(char *str, int c)
     }
     return NULL;
 }
+int mostrarArchivoBinario( const char* nombreArchBinario)
+{
+    FILE* arch = fopen(nombreArchBinario, "rb");
+    if (!arch)
+    {
+        printf("Error: No se pudo abrir el archivo binario '%s' para lectura.\n", nombreArchBinario);
+        return ERR_ARCHIVO;
+    }
 
+    RegistroSalida reg;
 
+    printf("\n--- Contenido del archivo binario: %s ---\n", nombreArchBinario);
+    printf("%-10s | %-15s | %-41s | %-15s | %-10s\n",
+           "Periodo", "Clasificador", "Nivel Gral. Aperturas", "Tipo Variable", "Valor");
+    printf("--------------------------------------------------------------------------------------------------\n");
+
+    int cantReg = 0;
+
+    while (fread(&reg, sizeof(RegistroSalida), 1, arch))
+    {
+        printf("%-10s | %-15s | %-41s | %-15s | %.2f\n",
+               reg.periodo,
+               reg.clasificador,
+               reg.nivel_general_aperturas,
+               reg.tipo_variable,
+               reg.valor);
+        cantReg++;
+    }
+
+    if (feof(arch))
+    {
+        printf("--------------------------------------------------------------------------------------------------\n");
+        printf("Lectura de archivo binario finalizada. Total de registros de salida leídos: %d\n", cantReg);
+    }
+    else
+    {
+        printf("Error de lectura al procesar el archivo binario.\n");
+        fclose(arch);
+        return ERR_ARCHIVO;
+    }
+
+    fclose(arch);
+    return BIEN;
+}
+
+double redondear2Decimales(double valor)
+{
+    return (double)((int)(valor * 100 + 0.5)) / 100;
+
+}
 
 

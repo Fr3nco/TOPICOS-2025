@@ -1,71 +1,56 @@
 #include "cabeceras.h"
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
+int main() {
+    system("chcp 1252 >nul"); // Configurar consola para caracteres especiales
 
-int main()
-{
+    Vector vGeneral, vItems, vUnificado;
 
-    system("chcp 1252 >nul");
-    Vector vItems;
-    Vector vRegistros;
-
-
-    int res = cargarDesdeCSV(NOM_ARCH_GENERAL,&vRegistros,sizeof(RegistroICC),parsearLineaRegistroGeneralICC);
-
-    if (res == BIEN)
-    {
-        res = agregarClasificador(&vRegistros, generarClasificadorIndiceGeneral);
-        if(res != BIEN)
-        {
-            puts("Error al agregar clasificadores");
-            vectorDestruir(&vRegistros);
-
-        }
-
-        printf("Registros cargados: %d\n", vRegistros.ce);
-//        vectorMostrarGen(&vRegistros, imprimirRegistroICC);
+    // Cargar y procesar archivo general
+    printf("Procesando archivo general...\n");
+    if(cargarDesdeCSV(NOM_ARCH_GENERAL, &vGeneral, sizeof(RegistroICC), parsearLineaRegistroGeneralICC) != BIEN) {
+        printf("Error al cargar archivo general\n");
+        return 1;
     }
-    else
-    {
-        printf("\n Error al hacer la carga en el archivo : %s",NOM_ARCH_GENERAL);
+    agregarClasificador(&vGeneral, generarClasificadorIndiceGeneral);
+
+    // Cargar y procesar archivo de items
+    printf("Procesando archivo de items...\n");
+    if(cargarDesdeCSV(NOM_ARCH_ITEMS, &vItems, sizeof(RegistroICC), parsearLineaItemsObra) != BIEN) {
+        printf("Error al cargar archivo de items\n");
+        vectorDestruir(&vGeneral);
+        return 1;
     }
+    agregarClasificador(&vItems, generarClasificadorItems);
 
-    puts("Archivo 2\n");
-    puts("-------------------------------------------------------------------------------\n");
+    // Unificar los vectores
+    vectorCrear(&vUnificado, sizeof(RegistroICC));
+    vectorCopiar(&vUnificado, &vGeneral);
+    vectorCopiar(&vUnificado, &vItems);
 
-    int res2=cargarDesdeCSV(NOM_ARCH_ITEMS,&vItems, sizeof(RegistroICC),parsearLineaItemsObra);
-     if (res2 == BIEN)
-    {
-        res2 = agregarClasificador(&vItems, generarClasificadorItems);
-        if(res2 != BIEN)
-        {
-            puts("Error al agregar clasificadores");
-            vectorDestruir(&vItems);
-
-        }
-
-        printf("Registros cargados: %d\n", vItems.ce);
-//        vectorMostrarGen(&vItems, imprimirRegistroICC);
-    }
-    else
-    {
-        printf("\n Error al hacer la carga en el archivo : %s",NOM_ARCH_ITEMS);
-    }
-
-    vectorCopiar(&vRegistros, &vItems);
-
+    // Liberar memoria de los vectores originales
+    vectorDestruir(&vGeneral);
     vectorDestruir(&vItems);
 
-    puts("Archivo Unificado\n");
-    puts("-------------------------------------------------------------------------------\n");
-    vectorOrdenar(&vRegistros, compararRegistrosICC);
-    calculoVariacionMensual(&vRegistros);
-    calculoVariacionInteranual(&vRegistros);
-    vectorMostrarGen(&vRegistros, imprimirRegistroICC);
-    vectorDestruir(&vRegistros);
+    // Ordenar el vector unificado
+    vectorOrdenar(&vUnificado, compararRegistrosICC);
 
+    // Calcular variaciones
+
+    calculoVariacionMensual(&vUnificado);
+    calculoVariacionInteranual(&vUnificado);
+
+
+    // Generar archivo de salida
+    printf("Generando archivo de salida...\n");
+    if(grabarArchivoSalida(&vUnificado, NOM_ARCH_SALIDA) == BIEN) {
+        printf("Archivo generado exitosamente: %s\n", NOM_ARCH_SALIDA);
+            mostrarArchivoBinario(NOM_ARCH_SALIDA);
+    } else {
+        printf("Error al generar archivo de salida\n");
+    }
+
+    vectorDestruir(&vUnificado);
     return 0;
 }
