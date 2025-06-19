@@ -3,28 +3,28 @@
 
 //PUNTO 1:
 bool esFechaValida(int dia, int mes, int anio) {
-    // Validar año
-    if(anio < 1900 || anio > 2100)
+    // Validar aÃ±o
+    if(anio < 1900 || anio > 2025)
     return false;
 
     // Validar mes
     if(mes < 1 || mes > 12)
     return false;
 
-    // Validar día
+    // Validar dÃ­a
     if(dia < 1)
     return false;
 
-    // Meses con 31 días
+    // Meses con 31 dÃ­as
     if(mes == 1 || mes == 3 || mes == 5 || mes == 7 ||
        mes == 8 || mes == 10 || mes == 12) {
         return dia <= 31;
     }
-    // Meses con 30 días
+    // Meses con 30 dÃ­as
     else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) {
         return dia <= 30;
     }
-    // Febrero (considerando años bisiestos)
+    // Febrero (considerando aÃ±os bisiestos)
     else {
         if((anio % 400 == 0) || (anio % 100 != 0 && anio % 4 == 0)) {
             return dia <= 29;
@@ -89,7 +89,7 @@ int parsearLineaRegistroGeneralICC(char* linea, void* reg) {
 
     return BIEN;
 }
-// PUNTO 3: Desencriptar índice general
+// PUNTO 3: Desencriptar Ã­ndice general
 void desencriptarIndiceGeneral(char* cadena) {
     secuenciaPalabras secL, secE;
     Palabra pal;
@@ -125,7 +125,7 @@ bool normalizarNivelGeneralAperturas(char* str, bool esItem) {
 }
 //Punto 5
 
-//funcion genérica reutilizada luego en archivo items_obras
+//funcion genÃ©rica reutilizada luego en archivo items_obras
 int agregarClasificador(Vector* vec, FuncionClasificador generarClasif)
 {
     if(vec == NULL || generarClasif == NULL)
@@ -261,7 +261,7 @@ bool normalizarNivelGeneralAperturasItems( char *str)
 void generarClasificadorItems(void *reg)
 {
     RegistroICC *registro= (RegistroICC*)reg;
-    mi_strcpy(registro->clasificador,"ítems");
+    mi_strcpy(registro->clasificador,"Ã­tems");
 }
 /* Punto 10 */
 int compararRegistrosICC(const void* a, const void* b) {
@@ -279,7 +279,7 @@ int ordenClasif(const char* clasif)
 {
         if (mi_strcmp(clasif, "Nivel general") == 0) return 0;
         if (mi_strcmp(clasif, "Capitulos") == 0) return 1;
-        return 2; // ítems u otros
+        return 2; // Ã­tems u otros
 }
 //Punto 11 y Punto 12
 bool mismoMesAnioAnterior(const char *fechaActual, const char *fechaAnterior, char * tipoVariacion)
@@ -428,7 +428,7 @@ int grabarArchivoSalida(const Vector* vector, const char* nombreArch) {
     for(size_t i = 0; i < vector->ce; i++) {
         RegistroICC* regICC = (RegistroICC*)((char*)vector->vec + i * vector->tamElem);
 
-        // Índice ICC
+        // Ãndice ICC
         mi_strcpy(regSalida.periodo, regICC->periodo);
         mi_strcpy(regSalida.clasificador, regICC->clasificador);
         mi_strcpy(regSalida.nivel_general_aperturas, regICC->nivGenApertura);
@@ -436,12 +436,12 @@ int grabarArchivoSalida(const Vector* vector, const char* nombreArch) {
         regSalida.valor = regICC->indice;
         fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
 
-        // Variación mensual
+        // VariaciÃ³n mensual
         mi_strcpy(regSalida.tipo_variable, "var_mensual");
         regSalida.valor = regICC->var_mensual;
         fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
 
-        // Variación interanual
+        // VariaciÃ³n interanual
         mi_strcpy(regSalida.tipo_variable, "var_interanual");
         regSalida.valor = regICC->var_interanual;
         fwrite(&regSalida, sizeof(RegistroSalida), 1, arch);
@@ -556,7 +556,7 @@ int mostrarArchivoBinario( const char* nombreArchBinario)
     if (feof(arch))
     {
         printf("--------------------------------------------------------------------------------------------------\n");
-        printf("Lectura de archivo binario finalizada. Total de registros de salida leídos: %d\n", cantReg);
+        printf("Lectura de archivo binario finalizada. Total de registros de salida leÃ­dos: %d\n", cantReg);
     }
     else
     {
