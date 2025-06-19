@@ -35,6 +35,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../fecha/fecha.h" />
+		<Unit filename="../palabra/Palabra.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../palabra/Palabra.h" />
+		<Unit filename="../palabra/SecuenciaPalabras.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../palabra/SecuenciaPalabras.h" />
 		<Unit filename="../vector/vector.c">
 			<Option compilerVar="CC" />
 		</Unit>

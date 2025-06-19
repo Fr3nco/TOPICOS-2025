@@ -16,3 +16,46 @@
 	<stdbool.h>
 	<stdio.h>
 
+1749668766 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\fecha\fecha.c
+	"fecha.h"
+
+1749668766 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\fecha\fecha.h
+	<stddef.h>
+	<stdbool.h>
+	<stdio.h>
+
+1749668766 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\vector\vector.c
+	"vector.h"
+	<stdlib.h>
+	<string.h>
+
+1749668766 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\vector\vector.h
+	<stdbool.h>
+	<stdio.h>
+
+1750288011 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\tp_funciones\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"../fecha/fecha.h"
+	"../vector/vector.h"
+	"../palabra/Palabra.h"
+	"../palabra/SecuenciaPalabras.h"
+
+1745505654 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\palabra\palabra.c
+	"Palabra.h"
+	<stdio.h>
+	<ctype.h>
+
+1745505456 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\palabra\palabra.h
+	<stdbool.h>
+
+1745506160 source:c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\palabra\secuenciapalabras.c
+	"SecuenciaPalabras.h"
+
+1745505770 c:\users\mi\documents\2025-1er_cuatrimestre\topicos de programacion (4)\tp_25_1c\topicos-2025\palabra\secuenciapalabras.h
+	<stdio.h>
+	<stdbool.h>
+	"Palabra.h"
+
